@@ -46,6 +46,7 @@ public class EnemyScript : MonoBehaviour {
             if (hp == 0)
             {
                 Instantiate(explodObj, gameObject.transform.position, Quaternion.identity);
+                mcs.AddCrushEnemyNum();
                 Destroy(gameObject);
             }
         }

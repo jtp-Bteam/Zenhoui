@@ -14,13 +14,13 @@ public class MainCameraScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        player = GameObject.Find("Player");
-        ps = player.GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        player = GameObject.Find("Player");
+        ps = player.GetComponent<PlayerScript>();
         FollowPlayer();
     }
 

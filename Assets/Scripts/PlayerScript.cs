@@ -32,13 +32,13 @@ public class PlayerScript : MonoBehaviour
     {
         //ここはAndroid用なのでビルドの際は絶対に有効にし、下のを無効にする
 
-        //moveX = CrossPlatformInputManager.GetAxisRaw("HorizontalLeft") * Time.deltaTime * movement;
-        //moveZ = CrossPlatformInputManager.GetAxisRaw("VerticalLeft") * Time.deltaTime * movement;
+        moveX = CrossPlatformInputManager.GetAxisRaw("HorizontalLeft") * Time.deltaTime * speed;
+        moveZ = CrossPlatformInputManager.GetAxisRaw("VerticalLeft") * Time.deltaTime * speed;
         
         //Android用ここまで
 
-        moveX = Input.GetAxisRaw("HorizontalLeft") * Time.deltaTime * speed;
-        moveZ = Input.GetAxisRaw("VerticalLeft") * Time.deltaTime * speed;
+        //moveX = Input.GetAxisRaw("HorizontalLeft") * Time.deltaTime * speed;
+        //moveZ = Input.GetAxisRaw("VerticalLeft") * Time.deltaTime * speed;
     }
 
     void FixedUpdate()
@@ -51,11 +51,11 @@ public class PlayerScript : MonoBehaviour
     {
         //ここもIdouメソッドと同様にビルドの際は絶対に有効にする
 
-        //double radian = System.Math.Atan2(CrossPlatformInputManager.GetAxis("VerticalRight"), CrossPlatformInputManager.GetAxis("HorizontalRight"));
+        double radian = System.Math.Atan2(CrossPlatformInputManager.GetAxis("VerticalRight"), CrossPlatformInputManager.GetAxis("HorizontalRight"));
 
         //Android用ここまで
 
-        double radian = System.Math.Atan2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"));
+        //double radian = System.Math.Atan2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"));
 
 
         int dosu = (int)((180 * radian) / System.Math.PI) - 90;
