@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyShootingScript : MyShootingScript
+public class EnemyShootingScript : AbstractShootingScript
 {
 
     // Use this for initialization
-    void Start()
+    public override void Start()
     {
         if (gameObject.name == "Enemy")
         {

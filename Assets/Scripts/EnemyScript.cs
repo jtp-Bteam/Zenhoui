@@ -2,20 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyScript : MonoBehaviour {
+public class EnemyScript : AbstractMonoScript {
 
-    [SerializeField]
-    GameObject explodObj;
     [SerializeField]
     GameObject sparkObj;
     Transform player; //プレイヤーの場所とか
-    int hp;
-    float speed;
-
     MainCameraScript mcs;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
         hp = 10;
         speed = 2 + Random.value * 6;
         player = GameObject.Find("Player").transform;
@@ -24,11 +19,11 @@ public class EnemyScript : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
         if (player) transform.LookAt(player);
 	}
 
-    private void FixedUpdate()
+    public override void FixedUpdate()
     {
         //距離を保させたいならこちらを使う
         //if (Vector3.Distance(transform.position, player.position) > 5) GetComponent<Rigidbody>().velocity = gameObject.transform.forward * 5;
@@ -38,7 +33,7 @@ public class EnemyScript : MonoBehaviour {
         GetComponent<Rigidbody>().velocity = gameObject.transform.forward * speed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "MyBullet")
         {
