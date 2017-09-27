@@ -9,7 +9,7 @@ public class EnemyScript : AbstractMonoScript {
     Transform player; //プレイヤーの場所とか
     MainCameraScript mcs;
 
-	// Use this for initialization
+	// Use th
 	public override void Start () {
         hp = 10;
         speed = 2 + Random.value * 6;
@@ -20,17 +20,19 @@ public class EnemyScript : AbstractMonoScript {
 	
 	// Update is called once per frame
 	public override void Update () {
-        if (player) transform.LookAt(player);
 	}
 
-    public override void FixedUpdate()
-    {
+    public override void Idou(){
         //距離を保させたいならこちらを使う
         //if (Vector3.Distance(transform.position, player.position) > 5) GetComponent<Rigidbody>().velocity = gameObject.transform.forward * 5;
         //else GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 
         //超接近させるならこっち
         GetComponent<Rigidbody>().velocity = gameObject.transform.forward * speed;
+    }
+
+    public override void Kaiten(){
+        if (player) transform.LookAt(player);
     }
 
     public override void OnTriggerEnter(Collider other)

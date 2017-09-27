@@ -109,7 +109,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 4.54}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114367114585830520
 MonoBehaviour:
@@ -123,7 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1612907831891428, guid: ab33e81304f186442957fa5498b197cd, type: 2}
-  speed: 0
 --- !u!114 &114406968975334114
 MonoBehaviour:
   m_ObjectHideFlags: 1

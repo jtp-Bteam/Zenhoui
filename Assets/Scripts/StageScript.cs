@@ -22,12 +22,12 @@ public class StageScript : MonoBehaviour {
     {
         if (gameObject.name == "Stage1")
         {
-            GameObject player = Instantiate(playerObj, new Vector3(25, 0, 25), Quaternion.identity) as GameObject;
+            GameObject player = Instantiate(playerObj, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             player.name = "Player";
             int i;
             for (i = 0; i < 5; i++)
             {
-                GameObject enemy = Instantiate(enemyObj, new Vector3(Random.value * 46 + 2, 0, Random.value * 46 + 2), Quaternion.identity) as GameObject;
+                GameObject enemy = Instantiate(enemyObj, new Vector3(-20 + Random.value * 40, 0, -20 + Random.value * 40), Quaternion.identity) as GameObject;
                 enemy.name = "Enemy";
             }
             //InvokeRepeating("GenerateEnemy", 3f, 1f);
@@ -45,7 +45,7 @@ public class StageScript : MonoBehaviour {
 
     void GenerateEnemy()
     {
-        GameObject enemy = Instantiate(enemyObj, new Vector3(Random.value * 46 + 2, 0, Random.value * 46 + 2), Quaternion.identity) as GameObject;
+        GameObject enemy = Instantiate(enemyObj, new Vector3(-20 + Random.value * 40, 0, -20 + Random.value * 40), Quaternion.identity) as GameObject;
         enemy.name = "Enemy";
     }
 

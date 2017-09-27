@@ -24,17 +24,16 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
 
 	// Update is called once per frame
 	public virtual void Update () {
-        Idou();
-        Kaiten();
     }
 
     public virtual void FixedUpdate()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(moveX, 0, moveZ);
+        Idou();
+        Kaiten();
     }
 
-    public virtual void Idou()
-    {
+    public virtual void Idou(){
+
         //ここはAndroid用なのでビルドの際は絶対に有効にし、下のを無効にする
 
         //moveX = CrossPlatformInputManager.GetAxisRaw("HorizontalLeft") * Time.deltaTime * speed;
@@ -44,6 +43,8 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
 
         moveX = Input.GetAxisRaw("HorizontalLeft") * Time.deltaTime * speed;
         moveZ = Input.GetAxisRaw("VerticalLeft") * Time.deltaTime * speed;
+
+        GetComponent<Rigidbody>().velocity = new Vector3(moveX, 0, moveZ);
     }
 
     public virtual void Kaiten()
@@ -55,6 +56,7 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
         //Android用ここまで
 
         double radian = System.Math.Atan2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"));
+
 
 
         int dosu = (int)((180 * radian) / System.Math.PI) - 90;
@@ -101,7 +103,7 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "EnemyBullet")
+        if (other.gameObject.tag == "EnemyBullet") //弾に当たったときの挙動
         {
             hp--;
             if (hp == 0)
@@ -109,6 +111,15 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
                 Instantiate(explodObj, gameObject.transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
+        }
+        // if(other.gameObject.name == "FrontWall"){
+        //     transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
+        // }
+    }
+
+    public virtual void OnCollisionEnter(Collision col){
+        if(col.gameObject.name == "FrontWall"){
+            transform.position = new Vector3(transform.position.x, transform.position.y, col.transform.position.z - (float)1.5);
         }
     }
 }
