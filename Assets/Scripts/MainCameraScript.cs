@@ -7,7 +7,9 @@ public class MainCameraScript : MonoBehaviour
 
     GameObject player;
     PlayerScript ps;
-    public GUIStyle style;
+    
+    [SerializeField]
+    GUIStyle style;
     Vector2 guiScreenSize = new Vector2(1920, 1080); // 基準とする解像度
     int crushEnemyNum = 0;
 

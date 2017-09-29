@@ -16,14 +16,12 @@ public class ItemScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         player = GameObject.Find("Player");
         ps = player.GetComponent<PlayerScript>();
     }
 
     private void FixedUpdate()
     {
-        //transform.Rotate(0, 90 * Time.deltaTime, 0);
         transform.Rotate(90 * Time.deltaTime, 0, 0);
     }
 

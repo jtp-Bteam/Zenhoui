@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//---注意---
+//これは雑魚敵用スクリプトであり、汎用敵スクリプトではありません
+//---注意ここまで---
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,10 +22,6 @@ public class EnemyScript : AbstractMonoScript {
         mcs = GameObject.Find("Main Camera").GetComponent<MainCameraScript>();
     }
 	
-	// Update is called once per frame
-	public override void Update () {
-	}
-
     public override void Idou(){
         //距離を保させたいならこちらを使う
         //if (Vector3.Distance(transform.position, player.position) > 5) GetComponent<Rigidbody>().velocity = gameObject.transform.forward * 5;

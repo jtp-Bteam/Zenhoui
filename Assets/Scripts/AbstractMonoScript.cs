@@ -112,14 +112,20 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
                 Destroy(gameObject);
             }
         }
-        // if(other.gameObject.name == "FrontWall"){
-        //     transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
-        // }
     }
 
     public virtual void OnCollisionEnter(Collision col){
         if(col.gameObject.name == "FrontWall"){
-            transform.position = new Vector3(transform.position.x, transform.position.y, col.transform.position.z - (float)1.5);
+            transform.position = new Vector3(transform.position.x, transform.position.y, col.transform.position.z - (float)1.1);
+        }
+        else if(col.gameObject.name == "BackWall"){
+            transform.position = new Vector3(transform.position.x, transform.position.y, col.transform.position.z + (float)1.1);
+        }
+        else if(col.gameObject.name == "LeftWall"){
+            transform.position = new Vector3(col.transform.position.x + (float)1.1, transform.position.y, transform.position.z);
+        }
+        else if(col.gameObject.name == "RightWall"){
+            transform.position = new Vector3(col.transform.position.x - (float)1.1, transform.position.y, transform.position.z);
         }
     }
 }
