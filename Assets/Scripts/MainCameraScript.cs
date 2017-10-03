@@ -8,9 +8,9 @@ public class MainCameraScript : MonoBehaviour
     GameObject player;
     PlayerScript ps;
     
-    [SerializeField]
-    GUIStyle style;
-    Vector2 guiScreenSize = new Vector2(1920, 1080); // 基準とする解像度
+    // [SerializeField]
+    // GUIStyle style;
+    // Vector2 guiScreenSize = new Vector2(1920, 1080); // 基準とする解像度
     int score = 0;
 
     // Use this for initialization
