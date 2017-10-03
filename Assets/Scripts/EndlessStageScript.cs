@@ -20,18 +20,15 @@ public class EndlessStageScript : AbstractStageScript {
     // Use this for initialization
     public override void Start()
     {
-        if (gameObject.name == "Stage1")
+        GameObject player = Instantiate(playerObj, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        player.name = "Player";
+        int i;
+        for (i = 0; i < 5; i++)
         {
-            GameObject player = Instantiate(playerObj, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-            player.name = "Player";
-            int i;
-            for (i = 0; i < 5; i++)
-            {
-                GameObject enemy = Instantiate(enemyObj, new Vector3(-20 + Random.value * 40, 0, -20 + Random.value * 40), Quaternion.identity) as GameObject;
-                enemy.name = "Enemy";
-            }
-            //InvokeRepeating("GenerateEnemy", 3f, 1f);
+            GameObject enemy = Instantiate(enemyObj, new Vector3(-20 + Random.value * 40, 0, -20 + Random.value * 40), Quaternion.identity) as GameObject;
+            enemy.name = "Enemy";
         }
+        //InvokeRepeating("GenerateEnemy", 3f, 1f);
     }
 
     public override void FixedUpdate()

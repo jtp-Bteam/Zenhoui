@@ -11,7 +11,7 @@ public class MainCameraScript : MonoBehaviour
     [SerializeField]
     GUIStyle style;
     Vector2 guiScreenSize = new Vector2(1920, 1080); // 基準とする解像度
-    int crushEnemyNum = 0;
+    int score = 0;
 
     // Use this for initialization
     void Start()
@@ -21,11 +21,12 @@ public class MainCameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.Find("Player");
-        ps = player.GetComponent<PlayerScript>();
+        if(player == null) player = GameObject.Find("Player");
+        if(ps == null) ps = player.GetComponent<PlayerScript>();
         FollowPlayer();
     }
 
+/*
     private void OnGUI()
     {
         DisplayHP();
@@ -46,6 +47,12 @@ public class MainCameraScript : MonoBehaviour
         GUI.matrix = Matrix4x4.identity;
     }
 
+*/
+
+    public int GetScore(){
+        return score;
+    }
+
     private void FollowPlayer()
     {
         if (player)
@@ -54,9 +61,8 @@ public class MainCameraScript : MonoBehaviour
         }
     }
 
-    public void AddCrushEnemyNum()
+    public void AddScore()
     {
-        crushEnemyNum++;
+        score++;
     }
-
 }
