@@ -232,6 +232,26 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 114162044034107698, guid: 9c50cd1de3718fb41a47883002e24867,
+        type: 2}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 1983273455}
+    - target: {fileID: 114160829165694976, guid: 9c50cd1de3718fb41a47883002e24867,
+        type: 2}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 1983273455}
+    - target: {fileID: 114078157503278424, guid: 9c50cd1de3718fb41a47883002e24867,
+        type: 2}
+      propertyPath: stage
+      value: 
+      objectReference: {fileID: 1983273455}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c50cd1de3718fb41a47883002e24867, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1983273455 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1714538583229064, guid: 2dec1e972631ae7459d941844cf92984,
+    type: 2}
+  m_PrefabInternal: {fileID: 1019850912}

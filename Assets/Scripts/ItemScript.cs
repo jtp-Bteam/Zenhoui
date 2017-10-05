@@ -16,8 +16,8 @@ public class ItemScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        player = GameObject.Find("Player");
-        ps = player.GetComponent<PlayerScript>();
+        if(GameObject.Find("Player")) player = GameObject.Find("Player");
+        if(GameObject.Find("Player")) ps = player.GetComponent<PlayerScript>();
     }
 
     private void FixedUpdate()

@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class AbstractStageScript : MonoBehaviour {
 
-    private float time;
+    protected float time;
 
     [SerializeField]
     public GameObject playerObj;
@@ -22,14 +23,12 @@ public abstract class AbstractStageScript : MonoBehaviour {
     // Use this for initialization
     public virtual void Start()
     {
-        time = 0;
     }
 
     // Update is called once per frame
     public virtual void Update () 
     {
-        time += Time.deltaTime;
-	}
+    }
 
     public virtual void FixedUpdate()
     {
@@ -41,5 +40,19 @@ public abstract class AbstractStageScript : MonoBehaviour {
 
     public virtual void GenerateItem()
     {
+    }
+
+    public virtual void CountTime()
+    {
+        if(SceneManager.GetActiveScene().name == "EndlessStage"){
+            time += Time.deltaTime;
+        }
+        else{
+            if(time > 0) time -= Time.deltaTime;
+        }
+    }
+
+    public virtual float GetTime(){
+        return time;
     }
 }

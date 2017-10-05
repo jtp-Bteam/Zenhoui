@@ -20,6 +20,8 @@ public class EndlessStageScript : AbstractStageScript {
     // Use this for initialization
     public override void Start()
     {
+        time = 0;
+
         GameObject player = Instantiate(playerObj, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         player.name = "Player";
         int i;
@@ -34,6 +36,8 @@ public class EndlessStageScript : AbstractStageScript {
     public override void FixedUpdate()
     {
         if (Random.value < 0.002) GenerateItem();
+        
+        CountTime();
     }
 
     public override void GenerateEnemy()

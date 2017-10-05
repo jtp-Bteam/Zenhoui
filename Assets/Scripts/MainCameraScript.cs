@@ -21,8 +21,8 @@ public class MainCameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player == null) player = GameObject.Find("Player");
-        if(ps == null) ps = player.GetComponent<PlayerScript>();
+        if(GameObject.Find("Player")) player = GameObject.Find("Player");
+        if(GameObject.Find("Player")) ps = player.GetComponent<PlayerScript>();
         FollowPlayer();
     }
 
