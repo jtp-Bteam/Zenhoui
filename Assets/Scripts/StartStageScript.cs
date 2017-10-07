@@ -5,20 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class StartStageScript : MonoBehaviour {
 
-	public void IntArgFunction(int num)
+	public void StringArgFunction(string str)
     {
-		if(num == 0){
-        	SceneManager.LoadScene("SelectStage");
-		}
-		else if(num == 1){
-			// SceneManager.LoadScene("ReadyScene");
-			SceneManager.LoadScene("EndlessStage");
-		}
-		else if(num == 2){
-			SceneManager.LoadScene("AllScoreScene");
-		}
-		else{
-			SceneManager.LoadScene("BackSide");
-		}
+		switch(str){
+			case "SS":
+				SceneManager.LoadScene("SelectStage");
+				break;
+			case "SE":
+				SceneManager.LoadScene("SelectEquipment");
+				break;
+            case "AS":
+                SceneManager.LoadScene("AllScore");
+                break;
+            case "BSS":
+                SceneManager.LoadScene("BackSideSetting");
+                break;
+        }
     }
 }
