@@ -7,7 +7,7 @@ public class SelectStageScript : MonoBehaviour {
 
     public void IntArgFunction(int num)
     {
-        Debug.Log("IntArgFunction");
+        if(num == -1) SceneManager.LoadScene("StartStage");
         SceneManager.LoadScene("Stage" + num);
     }
 }
