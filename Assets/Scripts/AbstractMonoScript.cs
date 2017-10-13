@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 
 abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
 {
+    protected bool endless;
     protected int hp;
     protected int lastDosu = 0;
-    protected int companionNum = 0; //味方の数
+    protected int companionNum; //味方の数
 
-    protected float speed = 500f;
+    protected float speed;
     protected float moveX = 0f, moveZ = 0f;
 
     [SerializeField]
@@ -19,7 +21,17 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
 
     // Use this for initialization
     public virtual void Start () {
-        hp = 5;
+        if(SceneManager.GetActiveScene().name == "EndlessStage"){
+            hp = PlayerPrefs.GetInt("CurrentHP", 5);
+            companionNum = PlayerPrefs.GetInt("CurrentCompanion", 0);
+            speed = (PlayerPrefs.GetInt("CurrentSpeed", 0) + 1) * 500f;
+        }
+
+        else{
+            hp = 5;
+            companionNum = 0;
+            speed = 500f;
+        }
     }
 
 	// Update is called once per frame

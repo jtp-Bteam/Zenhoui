@@ -23,18 +23,32 @@ public class ChangeTextScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		text = GetComponent<Text>();
+
 		if(SceneManager.GetActiveScene().name == "SelectEquipment"){ //装備選択画面
 			switch(text.name){
-				
+                case "CurrentSpeed":
+                    text.text = (PlayerPrefs.GetInt("CurrentSpeed")).ToString();
+                    break;
+				case "CurrentBullet":
+					text.text = (PlayerPrefs.GetInt("CurrentBullet")).ToString();
+					break;
+				case "CurrentCompanion":
+					text.text = (PlayerPrefs.GetInt("CurrentCompanion")).ToString();
+					break;
 			}
 		}
+
+		else if(SceneManager.GetActiveScene().name == "ResultEndless"){
+			
+		}
+
 		else{ //戦闘シーン全てに適用を予定
 			if(player == null &&　GameObject.Find("Player")) player = GameObject.Find("Player");
 			if(player == null && GameObject.Find("Player")) ps = player.GetComponent<PlayerScript>();
 			if(mc == null) mc = GameObject.Find("Main Camera");
 			if(mcs == null) mcs = mc.GetComponent<MainCameraScript>();
 			if(ass == null) ass = stage.GetComponent<AbstractStageScript>();
-			text = this.GetComponent<Text>();
 			switch(text.name){
 				case "HP":
 					if(GameObject.Find("Player") == false) text.text = "HP:0";

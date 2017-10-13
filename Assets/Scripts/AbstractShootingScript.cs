@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 abstract public class AbstractShootingScript : MonoBehaviour, ShootingScript {
+
+    protected bool endless;
 
 	// bullet prefab
 	[SerializeField]
@@ -18,6 +21,11 @@ abstract public class AbstractShootingScript : MonoBehaviour, ShootingScript {
 	public virtual void Start () {
 		InvokeRepeating("Shoot", 0.1f, 0.1f);
         speed = 1500 * Time.deltaTime;
+        if(SceneManager.GetActiveScene().name == "EndlessStage"){
+            if(PlayerPrefs.GetInt("CurrentBullet") > 0){
+                ApplyThreeWay();
+            }
+        }
 	}
 
 	public virtual void Shoot(){
