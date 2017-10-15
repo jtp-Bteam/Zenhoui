@@ -4,36 +4,35 @@ using UnityEngine;
 
 public class EndlessStageScript : AbstractStageScript {
 
-    // [SerializeField]
-    // GameObject playerObj;
-    // [SerializeField]
-    // GameObject enemyObj;
-    // [SerializeField]
-    // GameObject speedUpObj;
-    // [SerializeField]
-    // GameObject speedDownObj;
-    // [SerializeField]
-    // GameObject companionObj;
-    // [SerializeField]
-    // GameObject threeWayObj;
-
     // Use this for initialization
-    public override void Start()
+    void Start()
     {
+        playerObj = (GameObject)Resources.Load("Prefabs/Player");
+        enemyObj = (GameObject)Resources.Load("Prefabs/Enemy");
+        speedUpObj = (GameObject)Resources.Load("Prefabs/ItemSpeedUp");
+        speedDownObj = (GameObject)Resources.Load("Prefabs/ItemSpeedDown");
+        companionObj = (GameObject)Resources.Load("Prefabs/ItemCompanion");
+        threeWayObj = (GameObject)Resources.Load("Prefabs/ItemThreeWay");
+
         time = 0;
 
         GameObject player = Instantiate(playerObj, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         player.name = "Player";
+
         int i;
-        for (i = 0; i < 5; i++)
+        for (i = 0; i < 100; i++) //5
         {
-            GameObject enemy = Instantiate(enemyObj, new Vector3(-20 + Random.value * 40, 0, -20 + Random.value * 40), Quaternion.identity) as GameObject;
-            enemy.name = "Enemy";
+            GenerateEnemy();
         }
         //InvokeRepeating("GenerateEnemy", 3f, 1f);
     }
 
-    public override void FixedUpdate()
+    private void Update()
+    {
+        if (GameObject.Find("Player") == null) Clear();
+    }
+
+    void FixedUpdate()
     {
         if (Random.value < 0.002) GenerateItem();
         
@@ -42,7 +41,8 @@ public class EndlessStageScript : AbstractStageScript {
 
     public override void GenerateEnemy()
     {
-        GameObject enemy = Instantiate(enemyObj, new Vector3(-20 + Random.value * 40, 0, -20 + Random.value * 40), Quaternion.identity) as GameObject;
+        //GameObject enemy = Instantiate(enemyObj, new Vector3(-20 + Random.value * 40, 0, -20 + Random.value * 40), Quaternion.identity) as GameObject;
+        GameObject enemy = Instantiate(enemyObj, new Vector3(-25 + Random.value * 50, Random.value * 50, Random.value * 50), Quaternion.identity) as GameObject;
         enemy.name = "Enemy";
     }
 

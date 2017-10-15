@@ -1,56 +1,30 @@
-﻿using System.Collections;
+﻿//これは戦闘時カメラのために作ったスクリプトなので、それ以外のシーンのカメラにくっつけても動きません
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainCameraScript : MonoBehaviour
 {
 
     GameObject player;
     PlayerScript ps;
-    
-    // [SerializeField]
-    // GUIStyle style;
-    // Vector2 guiScreenSize = new Vector2(1920, 1080); // 基準とする解像度
-    int score = 0;
 
-    // Use this for initialization
-    void Start()
-    {
-    }
+    GameObject stage;
+    AbstractStageScript ass;
+
+    Text hp;
+    Text time;
+    Text score;
 
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.Find("Player")) player = GameObject.Find("Player");
-        if(GameObject.Find("Player")) ps = player.GetComponent<PlayerScript>();
+        if(GameObject.Find("Player") && player == null) player = GameObject.Find("Player");
         FollowPlayer();
-    }
-
-/*
-    private void OnGUI()
-    {
-        DisplayHP();
-        DisplayScore();
-    }
-
-    private void DisplayHP()
-    {
-        GUIUtility.ScaleAroundPivot(new Vector2(Screen.width / guiScreenSize.x, Screen.height / guiScreenSize.y), Vector2.zero);
-        GUI.Label(new Rect(10, 40, 1, 1), "HP:" + ps.GetHP().ToString(), style);
-        GUI.matrix = Matrix4x4.identity;
-    }
-
-    private void DisplayScore()
-    {
-        GUIUtility.ScaleAroundPivot(new Vector2(Screen.width / guiScreenSize.x, Screen.height / guiScreenSize.y), Vector2.zero);
-        GUI.Label(new Rect(1650, 40, 1, 1), "スコア:" + crushEnemyNum.ToString(), style);
-        GUI.matrix = Matrix4x4.identity;
-    }
-
-*/
-
-    public int GetScore(){
-        return score;
+        DisplayHUD();
     }
 
     private void FollowPlayer()
@@ -61,8 +35,40 @@ public class MainCameraScript : MonoBehaviour
         }
     }
 
-    public void AddScore()
+    private void DisplayHUD()
     {
-        score++;
+        if (stage == null) stage = GameObject.Find(SceneManager.GetActiveScene().name);
+        if (stage != null && ass == null) ass = stage.GetComponent<AbstractStageScript>();
+        
+        if (player == null && GameObject.Find("Player")) player = GameObject.Find("Player");
+        if (ps == null && GameObject.Find("Player")) ps = player.GetComponent<PlayerScript>();
+        //switch (text.name)
+        //{
+        //    case "HP":
+        //        if (GameObject.Find("Player") == false) text.text = "HP:0";
+        //        else text.text = "HP:" + ps.GetHP();
+        //        break;
+        //    case "Time":
+        //        text.text = "Time:" + (int)ass.GetTime();
+        //        break;
+        //    case "Score":
+        //        text.text = "SCORE:" + ass.GetScore();
+        //        break;
+        //}
+
+        if (hp == null) hp = GameObject.Find("HP").GetComponent<Text>();
+        if (time == null) time = GameObject.Find("Time").GetComponent<Text>();
+        if (score == null) score = GameObject.Find("Score").GetComponent<Text>();
+
+        if (GameObject.Find("Player") == false)
+        {
+            hp.text = "HP:0";
+        }
+        else
+        {
+            hp.text = "HP:" + ps.GetHP();
+        }
+        time.text = "Time:" + (int)ass.GetTime();
+        score.text = "SCORE:" + ass.GetScore();
     }
 }

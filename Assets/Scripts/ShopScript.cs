@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IShootingScript{
+public class ShopScript : MonoBehaviour {
 
 	// Use this for initialization
-	void Start ();
+	void Start () {
+		
+	}
 	
 	// Update is called once per frame
-	//void Update ();
-	void Shoot();
-
+	void Update () {
+		
+	}
 }

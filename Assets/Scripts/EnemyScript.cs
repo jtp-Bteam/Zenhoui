@@ -5,21 +5,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyScript : AbstractMonoScript {
-
-    [SerializeField]
-    GameObject sparkObj;
+    
     Transform player; //プレイヤーの場所とか
-    MainCameraScript mcs;
+    //MainCameraScript mcs;
+    AbstractStageScript ass;
 
 	// Use th
 	public override void Start () {
         hp = 10;
         speed = 2 + Random.value * 6;
         player = GameObject.Find("Player").transform;
+        GameObject sparkObj = (GameObject)Resources.Load("Prefabs/Spark");
         Instantiate(sparkObj, gameObject.transform.position, Quaternion.identity); //出現時のエフェクト
-        mcs = GameObject.Find("Main Camera").GetComponent<MainCameraScript>();
+        //mcs = GameObject.Find("Main Camera").GetComponent<MainCameraScript>();
+        ass = GameObject.Find(SceneManager.GetActiveScene().name).GetComponent<AbstractStageScript>();
+        explodObj = (GameObject)Resources.Load("Prefabs/ExplosionMobile");
     }
 	
     public override void Idou(){
@@ -40,10 +43,10 @@ public class EnemyScript : AbstractMonoScript {
         if(other.gameObject.tag == "MyBullet")
         {
             hp--;
-            if (hp == 0)
+            if (hp <= 0)
             {
                 Instantiate(explodObj, gameObject.transform.position, Quaternion.identity);
-                mcs.AddScore();
+                ass.AddScore();
                 Destroy(gameObject);
             }
         }

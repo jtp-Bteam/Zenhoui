@@ -2,10 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SelectEquipmentScript : MonoBehaviour {
 
-	public void StringArgFunction(string str)
+    private Text currentMoney;
+    private Text currentHP;
+    private Text currentSpeed;
+    private Text currentBullet;
+    private Text currentCompanion;
+
+    private void Start()
+    {
+        currentMoney = GameObject.Find("CurrentMoney").GetComponent<Text>();
+        currentHP = GameObject.Find("CurrentHP").GetComponent<Text>();
+        currentSpeed = GameObject.Find("CurrentSpeed").GetComponent<Text>();
+        currentBullet = GameObject.Find("CurrentBullet").GetComponent<Text>();
+        currentCompanion = GameObject.Find("CurrentCompanion").GetComponent<Text>();
+    }
+
+    private void Update()
+    {
+        currentMoney.text = PlayerPrefs.GetInt("CurrentMoney").ToString();
+        currentHP.text = PlayerPrefs.GetInt("CurrentHP").ToString();
+        currentSpeed.text = PlayerPrefs.GetInt("CurrentSpeed").ToString();
+        currentBullet.text = PlayerPrefs.GetInt("CurrentBullet").ToString();
+        currentCompanion.text = PlayerPrefs.GetInt("CurrentCompanion").ToString();
+
+        if (PlayerPrefs.GetInt("CurrentHP") > PlayerPrefs.GetInt("MaxHP", 5)) PlayerPrefs.SetInt("CurrentHP", 10);
+        if (PlayerPrefs.GetInt("CurrentSpeed") > PlayerPrefs.GetInt("MaxSpeed")) PlayerPrefs.SetInt("CurrentSpeed", 5);
+        if (PlayerPrefs.GetInt("CurrentBullet") > PlayerPrefs.GetInt("MaxBullet")) PlayerPrefs.SetInt("CurrentHP", 1);
+        if (PlayerPrefs.GetInt("CurrentCompanion") > PlayerPrefs.GetInt("MaxCompanion")) PlayerPrefs.SetInt("CurrentCompanion", 5);
+    }
+
+    public void StringArgFunction(string str)
     {
 		switch(str){
 			case "Back":
@@ -16,6 +46,12 @@ public class SelectEquipmentScript : MonoBehaviour {
                 break;
             case "Shop":
                 SceneManager.LoadScene("Shop");
+                break;
+            case "IncreaseHP":
+                if (PlayerPrefs.GetInt("CurrentHP") < 10) PlayerPrefs.SetInt("CurrentHP", PlayerPrefs.GetInt("CurrentHP") + 1);
+                break;
+            case "DecreaseHP":
+                if (PlayerPrefs.GetInt("CurrentHP") > 5) PlayerPrefs.SetInt("CurrentHP", PlayerPrefs.GetInt("CurrentHP") - 1);
                 break;
             case "IncreaseSpeed":
                 if(PlayerPrefs.GetInt("CurrentSpeed") < 3) PlayerPrefs.SetInt("CurrentSpeed", PlayerPrefs.GetInt("CurrentSpeed") + 1);

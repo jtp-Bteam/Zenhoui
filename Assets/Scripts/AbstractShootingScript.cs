@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-abstract public class AbstractShootingScript : MonoBehaviour, ShootingScript {
+abstract public class AbstractShootingScript : MonoBehaviour, IShootingScript {
 
     protected bool endless;
 
 	// bullet prefab
-	[SerializeField]
+	//[SerializeField]
     protected GameObject bullet;
 
     // 弾丸発射点
@@ -19,6 +19,7 @@ abstract public class AbstractShootingScript : MonoBehaviour, ShootingScript {
 
 	// Use this for initialization
 	public virtual void Start () {
+        bullet = (GameObject)Resources.Load("Prefabs/MyBullet");
 		InvokeRepeating("Shoot", 0.1f, 0.1f);
         speed = 1500 * Time.deltaTime;
         if(SceneManager.GetActiveScene().name == "EndlessStage"){

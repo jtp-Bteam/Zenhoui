@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//このスクリプトは戦闘用ステージの抽象クラスであり、全てのステージ（たとえばスタート画面）に適用できるものではありません
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,32 +9,18 @@ public abstract class AbstractStageScript : MonoBehaviour {
 
     protected float time;
 
-    [SerializeField]
-    public GameObject playerObj;
-    [SerializeField]
-    public GameObject enemyObj;
-    [SerializeField]
-    public GameObject speedUpObj;
-    [SerializeField]
-    public GameObject speedDownObj;
-    [SerializeField]
-    public GameObject companionObj;
-    [SerializeField]
-    public GameObject threeWayObj;
+    //-----ここから必要に応じてプレハブにぶち込む用-----
+    
+    protected GameObject playerObj;
+    protected GameObject enemyObj;
+    protected GameObject speedUpObj;
+    protected GameObject speedDownObj;
+    protected GameObject companionObj;
+    protected GameObject threeWayObj;
 
-    // Use this for initialization
-    public virtual void Start()
-    {
-    }
+    //-----ここまで必要に応じてプレハブにぶち込む用-----
 
-    // Update is called once per frame
-    public virtual void Update () 
-    {
-    }
-
-    public virtual void FixedUpdate()
-    {
-    }
+    int score = 0;
 
     public virtual void GenerateEnemy()
     {
@@ -42,17 +30,46 @@ public abstract class AbstractStageScript : MonoBehaviour {
     {
     }
 
-    public virtual void CountTime()
+    public void CountTime()
     {
         if(SceneManager.GetActiveScene().name == "EndlessStage"){
-            time += Time.deltaTime;
+            if(GameObject.Find("Player") != false) time += Time.deltaTime;
         }
         else{
-            if(time > 0) time -= Time.deltaTime;
+            if(time > 0 && GameObject.Find("Player") != false) time -= Time.deltaTime;
         }
     }
 
-    public virtual float GetTime(){
+    public float GetTime()
+    {
         return time;
+    }
+    
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void AddScore()
+    {
+        score++;
+    }
+
+    public virtual void Clear()
+    {
+        PlayerPrefs.SetString("PreStage", SceneManager.GetActiveScene().name); //リザルト画面に移動した際に前のステージ名を覚えておくため
+        PlayerPrefs.SetFloat("PreTime", GetTime()); //同上
+        PlayerPrefs.SetInt("PreScore", GetScore()); //同上
+
+        if(GameObject.Find("Player") != false) //勝ち負け判定
+        {
+            PlayerPrefs.SetInt("PreJudge", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("PreJudge", 0);
+        }
+
+        SceneManager.LoadScene("Result");
     }
 }
