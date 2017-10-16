@@ -5,13 +5,13 @@ using UnityEngine;
 public class CompanionScript : MonoBehaviour {
 
     GameObject player;
-    [SerializeField]
     GameObject explodObj;
     int num;
 
 	// Use this for initialization
 	void Start () {
         player = GameObject.Find("Player");
+        explodObj = (GameObject)Resources.Load("Prefabs/ExplosionMobile");
 	}
 
     public void Create(int num)
@@ -41,8 +41,9 @@ public class CompanionScript : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (!player)
+        if (GameObject.Find("Player") == null)
         {
+            Debug.Log("わおわおわーお！");
             Instantiate(explodObj, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

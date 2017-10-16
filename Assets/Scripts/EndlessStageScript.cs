@@ -29,7 +29,7 @@ public class EndlessStageScript : AbstractStageScript {
 
     private void Update()
     {
-        if (GameObject.Find("Player") == null) Clear();
+        if (GameObject.Find("Player") == null) Invoke("Clear", 3f);
     }
 
     void FixedUpdate()

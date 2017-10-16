@@ -31,10 +31,10 @@ public class SelectEquipmentScript : MonoBehaviour {
         currentMaxCompanion = GameObject.Find("CurrentMaxCompanion").GetComponent<Text>();
 
         //-----デバッグ用-----
-        PlayerPrefs.SetInt("CurrentHP", 5);
-        PlayerPrefs.SetInt("CurrentSpeed", 0);
-        PlayerPrefs.SetInt("CurrentBullet", 0);
-        PlayerPrefs.SetInt("CurrentCompanion", 0);
+        // PlayerPrefs.SetInt("CurrentHP", 5);
+        // PlayerPrefs.SetInt("CurrentSpeed", 0);
+        // PlayerPrefs.SetInt("CurrentBullet", 0);
+        // PlayerPrefs.SetInt("CurrentCompanion", 0);
         //-----デバッグ用ここまで-----
 
         currentMaxHP.text = PlayerPrefs.GetInt("CurrentMaxHP", 5).ToString();
