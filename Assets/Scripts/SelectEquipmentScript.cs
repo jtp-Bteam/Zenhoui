@@ -12,6 +12,11 @@ public class SelectEquipmentScript : MonoBehaviour {
     private Text currentBullet;
     private Text currentCompanion;
 
+    private Text currentMaxHP;
+    private Text currentMaxSpeed;
+    private Text currentMaxBullet;
+    private Text currentMaxCompanion;
+
     private void Start()
     {
         currentMoney = GameObject.Find("CurrentMoney").GetComponent<Text>();
@@ -19,6 +24,23 @@ public class SelectEquipmentScript : MonoBehaviour {
         currentSpeed = GameObject.Find("CurrentSpeed").GetComponent<Text>();
         currentBullet = GameObject.Find("CurrentBullet").GetComponent<Text>();
         currentCompanion = GameObject.Find("CurrentCompanion").GetComponent<Text>();
+
+        currentMaxHP = GameObject.Find("CurrentMaxHP").GetComponent<Text>();
+        currentMaxSpeed = GameObject.Find("CurrentMaxSpeed").GetComponent<Text>();
+        currentMaxBullet = GameObject.Find("CurrentMaxBullet").GetComponent<Text>();
+        currentMaxCompanion = GameObject.Find("CurrentMaxCompanion").GetComponent<Text>();
+
+        //-----デバッグ用-----
+        PlayerPrefs.SetInt("CurrentHP", 5);
+        PlayerPrefs.SetInt("CurrentSpeed", 0);
+        PlayerPrefs.SetInt("CurrentBullet", 0);
+        PlayerPrefs.SetInt("CurrentCompanion", 0);
+        //-----デバッグ用ここまで-----
+
+        currentMaxHP.text = PlayerPrefs.GetInt("CurrentMaxHP", 5).ToString();
+        currentMaxSpeed.text = PlayerPrefs.GetInt("CurrentMaxSpeed").ToString();
+        currentMaxBullet.text = PlayerPrefs.GetInt("CurrentMaxBullet").ToString();
+        currentMaxCompanion.text = PlayerPrefs.GetInt("CurrentMaxCompanion").ToString();
     }
 
     private void Update()
@@ -29,10 +51,10 @@ public class SelectEquipmentScript : MonoBehaviour {
         currentBullet.text = PlayerPrefs.GetInt("CurrentBullet").ToString();
         currentCompanion.text = PlayerPrefs.GetInt("CurrentCompanion").ToString();
 
-        if (PlayerPrefs.GetInt("CurrentHP") > PlayerPrefs.GetInt("MaxHP", 5)) PlayerPrefs.SetInt("CurrentHP", 10);
-        if (PlayerPrefs.GetInt("CurrentSpeed") > PlayerPrefs.GetInt("MaxSpeed")) PlayerPrefs.SetInt("CurrentSpeed", 5);
-        if (PlayerPrefs.GetInt("CurrentBullet") > PlayerPrefs.GetInt("MaxBullet")) PlayerPrefs.SetInt("CurrentHP", 1);
-        if (PlayerPrefs.GetInt("CurrentCompanion") > PlayerPrefs.GetInt("MaxCompanion")) PlayerPrefs.SetInt("CurrentCompanion", 5);
+        if (PlayerPrefs.GetInt("CurrentHP") > PlayerPrefs.GetInt("CurrentMaxHP", 5)) PlayerPrefs.SetInt("CurrentHP", PlayerPrefs.GetInt("CurrentMaxHP", 5));
+        if (PlayerPrefs.GetInt("CurrentSpeed") > PlayerPrefs.GetInt("CurrentMaxSpeed")) PlayerPrefs.SetInt("CurrentSpeed", PlayerPrefs.GetInt("CurrentMaxSpeed"));
+        if (PlayerPrefs.GetInt("CurrentBullet") > PlayerPrefs.GetInt("CurrentMaxBullet")) PlayerPrefs.SetInt("CurrentBullet", PlayerPrefs.GetInt("CurrentMaxBullet"));
+        if (PlayerPrefs.GetInt("CurrentCompanion") > PlayerPrefs.GetInt("CurrentMaxCompanion")) PlayerPrefs.SetInt("CurrentCompanion", PlayerPrefs.GetInt("CurrentMaxCompanion"));
     }
 
     public void StringArgFunction(string str)

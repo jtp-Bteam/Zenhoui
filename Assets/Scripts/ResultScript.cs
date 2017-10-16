@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ResultScript : MonoBehaviour {
+
     private void Start()
     {
         String preStage = PlayerPrefs.GetString("PreStage");
@@ -32,6 +33,7 @@ public class ResultScript : MonoBehaviour {
     }
 
     public void BoolArgFunction(bool b){
-		SceneManager.LoadScene("SelectStage");
-	}
+        if(PlayerPrefs.GetString("PreStage") == "EndlessStage") SceneManager.LoadScene("SelectEquipment");
+        else SceneManager.LoadScene("SelectStage");
+    }
 }

@@ -32,6 +32,9 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
             companionNum = 0;
             speed = 500f;
         }
+
+        int i;
+        for (i = 0; i < companionNum; i++) AddCompanion();
     }
 
 	// Update is called once per frame

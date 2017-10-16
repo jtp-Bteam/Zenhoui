@@ -20,11 +20,11 @@ public class EndlessStageScript : AbstractStageScript {
         player.name = "Player";
 
         int i;
-        for (i = 0; i < 100; i++) //5
+        for (i = 0; i < 5; i++)
         {
             GenerateEnemy();
         }
-        //InvokeRepeating("GenerateEnemy", 3f, 1f);
+        InvokeRepeating("GenerateEnemy", 3f, 1f);
     }
 
     private void Update()
@@ -41,8 +41,7 @@ public class EndlessStageScript : AbstractStageScript {
 
     public override void GenerateEnemy()
     {
-        //GameObject enemy = Instantiate(enemyObj, new Vector3(-20 + Random.value * 40, 0, -20 + Random.value * 40), Quaternion.identity) as GameObject;
-        GameObject enemy = Instantiate(enemyObj, new Vector3(-25 + Random.value * 50, Random.value * 50, Random.value * 50), Quaternion.identity) as GameObject;
+        GameObject enemy = Instantiate(enemyObj, new Vector3(-20 + Random.value * 40, 0, -20 + Random.value * 40), Quaternion.identity) as GameObject;
         enemy.name = "Enemy";
     }
 
