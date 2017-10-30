@@ -101,6 +101,11 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
         if(speed > 500) speed -= 500;
     }
 
+    public virtual void IncreaseHP()
+    {
+        hp++;
+    }
+
     public virtual void AddCompanion()
     {
         if (companionNum < 4)
