@@ -11,6 +11,7 @@ TagManager:
   - EnemyBullet
   - Item
   - Companion
+  - Obstacle
   - Dossun
   - CrushZone
   layers:
