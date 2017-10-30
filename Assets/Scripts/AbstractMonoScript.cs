@@ -22,13 +22,13 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
         explodObj = (GameObject)Resources.Load("Prefabs/ExplosionMobile");
 
         if (SceneManager.GetActiveScene().name == "EndlessStage"){
-            hp = PlayerPrefs.GetInt("CurrentHP", 5);
+            hp = PlayerPrefs.GetInt("CurrentHP", 10);
             companionNum = PlayerPrefs.GetInt("CurrentCompanion", 0);
             speed = (PlayerPrefs.GetInt("CurrentSpeed", 0) + 1) * 500f;
         }
 
         else{
-            hp = 5;
+            hp = 10;
             companionNum = 0;
             speed = 500f;
         }
@@ -70,7 +70,7 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
 
         //Android用ここまで
 
-        double radian = System.Math.Atan2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"));
+        double radian = System.Math.Atan2(Input.GetAxisRaw("VerticalRight"), Input.GetAxisRaw("HorizontalRight"));
 
 
 
@@ -89,6 +89,15 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
     public virtual int GetHP()
     {
         return hp;
+    }
+
+    public virtual void DecreaseHP(){
+        hp--;
+        if (hp <= 0)
+        {
+//            Instantiate(explodObj, gameObject.transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 
     public virtual void IncreaseSpeed()
@@ -120,12 +129,7 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
     {
         if (other.gameObject.tag == "EnemyBullet") //弾に当たったときの挙動
         {
-            hp--;
-            if (hp <= 0)
-            {
-                Instantiate(explodObj, gameObject.transform.position, Quaternion.identity);
-                Destroy(gameObject);
-            }
+            DecreaseHP();
         }
     }
 
@@ -141,6 +145,10 @@ abstract public class AbstractMonoScript : MonoBehaviour, MonoScript
         }
         else if(col.gameObject.name == "RightWall"){
             transform.position = new Vector3(col.transform.position.x - (float)1.1, transform.position.y, transform.position.z);
+        }
+        else if(col.gameObject.tag == "Obstacle")
+        {
+            DecreaseHP();
         }
     }
 }

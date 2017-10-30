@@ -8,11 +8,17 @@ using UnityEngine.SceneManagement;
 public abstract class AbstractStageScript : MonoBehaviour {
 
     protected float time;
+    protected float obs_wave_time;
+    protected float enemy_wave_time;
 
     //-----ここから必要に応じてプレハブにぶち込む用-----
     
     protected GameObject playerObj;
     protected GameObject enemyObj;
+    protected GameObject middlebossObj;
+    protected GameObject bossObj;
+    protected GameObject obstacleObj1;
+    protected GameObject obstacleObj2;
     protected GameObject speedUpObj;
     protected GameObject speedDownObj;
     protected GameObject companionObj;
@@ -24,6 +30,15 @@ public abstract class AbstractStageScript : MonoBehaviour {
 
     public virtual void GenerateEnemy()
     {
+    }
+
+    public virtual void GenerateObstacle()
+    {
+    }
+
+    public virtual void SetObstacle(float[,] pos)
+    {
+
     }
 
     public virtual void GenerateItem()
