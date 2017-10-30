@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SelectStage.unity
     guid: cc76b3212b00d3e44a77a7071bab953c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Main.unity
     guid: efb8fb9f86e8e7843ba3b4db36ee31f7
   - enabled: 1
@@ -35,3 +35,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Result.unity
     guid: f7b700752e0fd984fbd9adbe11caf64a
+  - enabled: 1
+    path: Assets/GyroStage.unity
+    guid: 9f2739097b1f2084fa8b94a1b289ec6f

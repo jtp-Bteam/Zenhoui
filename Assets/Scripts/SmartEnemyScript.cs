@@ -9,7 +9,7 @@ public class SmartEnemyScript : EnemyScript {
     public override void Idou()
     {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        Transform player = GameObject.Find("Player").transform;
-        agent.SetDestination(player.position);
+        Transform player1 = GameObject.Find("Player").transform;
+        agent.SetDestination(player1.position);
     }
 }

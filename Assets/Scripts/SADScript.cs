@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+using UnityEngine.SceneManagement;
+
 public class SADScript : EnemyScript {
 
     public Vector3[] points;
@@ -10,6 +12,7 @@ public class SADScript : EnemyScript {
     private NavMeshAgent agent;
     Transform player;
     bool Find = false;
+    
 
 
     public override void Start()
@@ -93,6 +96,21 @@ public class SADScript : EnemyScript {
             GetComponent<Light>().color = Color.red;
             agent.speed = 15;
             agent.angularSpeed = 100000;
+        }
+    }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "MyBullet")
+        {
+            hp--;
+            if (hp <= 0)
+            {
+                Instantiate(explodObj, gameObject.transform.position, Quaternion.identity);
+                GameObject.Find(SceneManager.GetActiveScene().name).GetComponent<AbstractStageScript>().AddScore();
+                Destroy(gameObject);
+                GameObject.Find("GyroStage").GetComponent<GyroStageScript>().Invoke("Clear", 3f);
+            }
         }
     }
 }
