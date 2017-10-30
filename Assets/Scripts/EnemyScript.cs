@@ -15,8 +15,8 @@ public class EnemyScript : AbstractMonoScript {
 
 	// Use th
 	public override void Start () {
-        hp = 10;
-        speed = 2 + Random.value * 6;
+        hp = 3;
+        speed = 1 + Random.value * 6;
         player = GameObject.Find("Player").transform;
         GameObject sparkObj = (GameObject)Resources.Load("Prefabs/Spark");
         Instantiate(sparkObj, gameObject.transform.position, Quaternion.identity); //出現時のエフェクト
@@ -48,6 +48,18 @@ public class EnemyScript : AbstractMonoScript {
                 Instantiate(explodObj, gameObject.transform.position, Quaternion.identity);
                 ass.AddScore();
                 Destroy(gameObject);
+            }
+        }
+    }
+
+      public override void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Dossun")
+        {
+            {
+                Instantiate(explodObj, gameObject.transform.position, Quaternion.identity);
+                ass.AddScore();
+                Destroy(this.gameObject);
             }
         }
     }
