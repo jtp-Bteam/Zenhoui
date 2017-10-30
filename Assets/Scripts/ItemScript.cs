@@ -43,6 +43,9 @@ public class ItemScript : MonoBehaviour {
                 case "ItemThreeWay(Clone)":
                     ps.ApplyThreeWay();
                     break;
+                case "ItemHeart()":
+                    ps.IncreaseHP();
+                    break;
             }
             Destroy(gameObject);
         }

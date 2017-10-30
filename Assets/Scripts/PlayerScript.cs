@@ -111,4 +111,15 @@ public class PlayerScript : AbstractMonoScript
     //         }
     //     }
     // }
+
+      public override void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Dossun")
+        {
+            {
+             
+                Destroy(this.gameObject);
+            }
+        }
+    }
 }

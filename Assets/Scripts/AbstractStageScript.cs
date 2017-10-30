@@ -23,7 +23,7 @@ public abstract class AbstractStageScript : MonoBehaviour {
     protected GameObject speedDownObj;
     protected GameObject companionObj;
     protected GameObject threeWayObj;
-
+    protected GameObject heartObj;
     //-----ここまで必要に応じてプレハブにぶち込む用-----
 
     int score = 0;
