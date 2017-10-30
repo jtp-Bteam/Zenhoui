@@ -5,14 +5,17 @@ using UnityEngine;
 public class GyroStageScript : AbstractStageScript {
 
     GameObject bossObj;
+    GameObject player;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         playerObj = (GameObject)Resources.Load("Prefabs/Player");
         bossObj = (GameObject)Resources.Load("Prefabs/SearchAndDestroy");
 
-        GameObject player = Instantiate(playerObj, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        companionObj = (GameObject)Resources.Load("Prefabs/ItemCompanion");
+
+        player = Instantiate(playerObj, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         player.name = "Player";
 
         //GenerateEnemy();
@@ -21,8 +24,9 @@ public class GyroStageScript : AbstractStageScript {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        if (GameObject.Find("Player") == null) Invoke("Clear", 3f);
+    }
 
     public override void GenerateEnemy()
     {
