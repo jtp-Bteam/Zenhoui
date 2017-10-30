@@ -12,6 +12,7 @@ TagManager:
   - Item
   - Companion
   - Dossun
+  - CrushZone
   layers:
   - Default
   - TransparentFX
